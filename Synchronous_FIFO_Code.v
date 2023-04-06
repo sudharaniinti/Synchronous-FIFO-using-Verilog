@@ -9,8 +9,8 @@ module Synchronous_FIFO(
     input read,
     input write,
     input [(`WIDTH-1):0] data_in,
-    output reg full,
-    output reg empty,
+    output full,
+    output empty,
     output reg [(`WIDTH-1):0] data_out
     );
 
@@ -21,10 +21,8 @@ module Synchronous_FIFO(
     reg [`PTR:0] count;
     
     //Generating full and empty signals
-    always@(posedge clk) begin
-        full=(count==`DEPTH);
-        empty=(count==0);
-    end
+    assign full=(count==`DEPTH);
+    assign empty=(count==0);
 
     //Updating the Counter
     always@(posedge clk or posedge reset) begin
